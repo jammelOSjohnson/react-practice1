@@ -27,6 +27,7 @@ class TodoStore extends EventEmitter {
             complete: false
         });
 
+        console.log('about to emit change');
         this.emit("change");
     }
  
@@ -35,7 +36,12 @@ class TodoStore extends EventEmitter {
     }
 
     handleActions(action){
-        console.log("todo store received an action", action);
+        //console.log("todo store received an action", action);
+        switch(action.type) {
+            case "CREATE_TODO": {
+                this.createTodo(action.text);
+            }
+        }
     }
 }
 

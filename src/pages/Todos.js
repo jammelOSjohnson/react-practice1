@@ -11,12 +11,17 @@ export default class Featured extends React.Component {
         }
     }
 
-    componentWillMount(){
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('here')
         TodoStore.on("change", () => {
             this.setState({
                 todos: TodoStore.getAll(),
             })
         })
+    }
+
+    componentDidUpdate(){
+        console.log("component updated")
     }
 
     render() {
